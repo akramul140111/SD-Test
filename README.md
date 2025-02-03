@@ -70,46 +70,34 @@ For Jenkins Install:
 
 Jenkins Installation and login:
 ======================
- 1  sudo apt update
-    2  sudo apt upgrade
-    3  sudo apt update
-    4  sudo apt install fontconfig openjdk-17-jre
-    5  java -version
-    6  openjdk version "17.0.13" 2024-10-15
-    7  OpenJDK Runtime Environment (build 17.0.13+11-Debian-2)
-    8  OpenJDK 64-Bit Server VM (build 17.0.13+11-Debian-2, mixed mode, sharing)
-    9  java -version
-   10  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-   11  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
-   12  sudo apt-get update
-   13  sudo apt-get install jenkins
-   14  cat /var/lib/jenkins/secrets/initialAdminPassword
-   15  sudo nano  /var/lib/jenkins/secrets/initialAdminPassword
+  sudo apt update
+ sudo apt upgrade
+ sudo apt update
+ sudo apt install fontconfig openjdk-17-jre
+ java -version
+openjdk version "17.0.13" 2024-10-15
+OpenJDK Runtime Environment (build 17.0.13+11-Debian-2)
+OpenJDK 64-Bit Server VM (build 17.0.13+11-Debian-2, mixed mode, sharing)
+java -version
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+cat /var/lib/jenkins/secrets/initialAdminPassword
+  sudo nano  /var/lib/jenkins/secrets/initialAdminPassword
   
-   Agent Connect with secretfile:
+Agent Connect with secretfile:
    
 For Frontend :
 DockerFile:
-# Use Node.js as the base image
 FROM node:18
-
-# Set the working directory
 WORKDIR /app
-
-# Copy package.json and install dependencies
 COPY package.json .
 RUN npm install
 RUN npm install -g npm@11.1.0
-# Copy the rest of the application code
 COPY . .
-
-# Build the React app
 RUN npm run build
-
-# Expose port 3000
 EXPOSE 3000
-
-# Start the React app
 CMD ["npm", "start"]
 
 
@@ -117,23 +105,12 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 For Backend
-# Use Node.js as the base image
 FROM node:18
-
-# Set the working directory
 WORKDIR /app
-
-# Copy package.json and install dependencies
 COPY package.json .
 RUN npm install
-
-# Copy the rest of the application code
 COPY . .
-
-# Expose port 5000
 EXPOSE 5000
-
-# Start the backend server
 CMD ["node", "src/index.js"]
 
 Docker-compose.yml
@@ -189,6 +166,7 @@ docker pull <myusername>/frontend:latest
 docker pull <myusername>/mysql-db:8.37
 
 Deploy In k8s:
+
 K8s Install Through Terraform:
 ==============================
 touch minikube.tf
@@ -216,6 +194,7 @@ kubectl config view --raw
 terraform apply
 
 First Deploy backend:
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -259,6 +238,7 @@ spec:
   type: ClusterIP
 
 Then Deploy ForntEnd:
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -319,6 +299,7 @@ spec:
   type: LoadBalancer
   
 IMPLEMENT k8S WITH cicd:
+
 Ensure Kubeconfig file from your Minikube setup in cicd
 Ensure that your CI/CD server has network access to the Kubernetes cluster, especially if you're running Minikube locally and need to expose it externally.
 Install Kubernetes CLI (kubectl) on Your CI/CD Server:
@@ -403,5 +384,3 @@ deploy:
   only:
     - master
 This is the process how I can Complete My CICD and K8s implementation. For security we can use sonarqube, Trivy and OWASP. Thus we can Complete the full path securly.
-
-Total workflow:
