@@ -2,7 +2,7 @@ Here is my Full plan Link :
 
 https://drive.google.com/file/d/1b1NKhpKPH3VJm3bXdThc1COqUIk-AOKU/view?usp=sharing
 
-Due to time issue I can explain it properly but I shall try my best to explain. Hopefully my plan image will be helpfull for understanding the issue.
+Due to time issue I am not able to  explain it properly but I shall try my best to explain. Hopefully my plan image will be helpfull for understanding the issue.
 
 Infrastracture Create with Teffaform :
 
