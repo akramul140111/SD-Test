@@ -1,23 +1,36 @@
 Here is my Full plan Link :
-[https://drive.google.com/drive/recent](https://drive.google.com/file/d/1b1NKhpKPH3VJm3bXdThc1COqUIk-AOKU/view?usp=sharing)
+
+https://drive.google.com/file/d/1b1NKhpKPH3VJm3bXdThc1COqUIk-AOKU/view?usp=sharing
+
 Due to time issue I can explain it properly but I shall try my best to explain. Hopefully my plan image will be helpfull for understanding the issue.
 
 Infrastracture Create with Teffaform :
 
 sudo apt install -y curl gnupg software-properties-common
+
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
 sudo apt update
+
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B7B3B788A8D3785C
+
 sudo apt update
+
 sudo apt install terraform
+
 terraform --version
 terraform -install-autocomplete
 My Plan is to cleate two VM for Jenkins and K8s:
 We need to setup and configure awscli:
 AWS Configure
+
+
 add config file here
+
 Main.tf :(For Terraform)
+
 provider "aws" {
   region = "us-east-1"  # Change to your preferred region
 }
